@@ -16,6 +16,8 @@ public class MusicOrganizer
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
 
+    private boolean playing;
+
     /**
      * Create a MusicOrganizer
      */
@@ -27,6 +29,7 @@ public class MusicOrganizer
         readLibrary("audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
+        playing = false;
     }
 
     /**
@@ -54,10 +57,17 @@ public class MusicOrganizer
     public void playTrack(int index)
     {
         if(indexValid(index)) {
-            Track track = tracks.get(index);
-            player.startPlaying(track.getFilename());
-            track.incrementPlayCount();
-            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+            if((player.isPlaying()) == false && (indexValid(index)))
+            {
+                Track track = tracks.get(index);
+                player.startPlaying(track.getFilename());
+                track.incrementPlayCount();
+                System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+            }
+            else if (player.isPlaying())
+            {
+                System.out.println("Ya se esta reproduciendo una canción");
+            }
         }
     }
 
@@ -189,6 +199,7 @@ public class MusicOrganizer
             }
         }
     }
+
     /**
      * metodo que fija el titulo del album a un determinado track
      */
@@ -196,6 +207,17 @@ public class MusicOrganizer
     {
         track.get(index).setAlbumTitle(tituloAlbum);
     }
-        
 
+    /**
+     * informa por pantalla si en ese momento se esta reproduciendo musica o no
+     */
+    public void isPlaying()
+    {
+        if (playing == true)
+        {
+            System.out.println("Se está reproduciendo una canción en este momento");
+        }
+    }
 }
+
+
