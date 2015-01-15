@@ -189,5 +189,13 @@ public class MusicOrganizer
             }
         }
     }
+    /**
+     * metodo que fija el titulo del album a un determinado track
+     */
+    public void setAlbumTitle(int index, String tituloAlbum)
+    {
+        track.get(index).setAlbumTitle(tituloAlbum);
+    }
+        
 
 }

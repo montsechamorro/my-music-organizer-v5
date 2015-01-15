@@ -15,6 +15,8 @@ public class Track
     private String filename;
     // veces que se ha reproducido una cancion
     private int playCount;
+    // indica el album en que esta contenida la cancion
+    private String albumTitle;
     
     /**
      * Constructor for objects of class Track.
@@ -22,10 +24,11 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    public Track(String artist, String title, String filename)
+    public Track(String artist, String title, String filename, String albumTitle)
     {
-        setDetails(artist, title, filename);
+        setDetails(artist, title, filename, albumTitle);
         playCount = 0;
+     
     }
     
     /**
@@ -34,9 +37,9 @@ public class Track
      * decoded to extract artist and title details.
      * @param filename The track file. 
      */
-    public Track(String filename)
+    public Track(String filename, String albumTitle)
     {
-        setDetails("unknown", "unknown", filename);
+        setDetails("unknown", "unknown", filename, albumTitle);
     }
     
     /**
@@ -65,6 +68,17 @@ public class Track
     {
         return filename;
     }
+    /**
+     * devuelve el titulo del album donde se encuentra la cancion
+     */
+    public String getAlbumTitle()
+    {
+        return albumTitle;
+    }
+    public void setAlbumTitle(String albumTitle)
+    {
+        this.albumTitle = albumTitle;
+    }
         
     /**
      * Return details of the track: artist, title and file name.
@@ -72,7 +86,7 @@ public class Track
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ")" + "Times played: " + playCount;
+        return artist + ": " + title + "  (file: " + filename + ")" + "Times played: " + playCount + "Titulo del Album: " + albumTitle;
     }
     
     /**
@@ -81,11 +95,12 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    private void setDetails(String artist, String title, String filename)
+    private void setDetails(String artist, String title, String filename, String albumTitle)
     {
         this.artist = artist;
         this.title = title;
         this.filename = filename;
+        this.albumTitle = albumTitle;
     }
     /**
      * metodo que devuelve las veces que se ha reproducido la cancion
