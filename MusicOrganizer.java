@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -227,6 +228,7 @@ public class MusicOrganizer
             System.out.println("No se está reproduciendo nada en este momento");
         }
     }
+
     /**
      * Muestra los detalles de todos los track almacenados en el organizador, usando un iterador
      */
@@ -239,6 +241,7 @@ public class MusicOrganizer
             System.out.println(track.getDetails());
         }
     }
+
     /**
      * metodo que permite eliminar tracks que contengan un determinado artista usando un iterator
      */
@@ -248,13 +251,14 @@ public class MusicOrganizer
         while (it.hasNext())
         {
             Track track = it.next();
-            
+
             if (track.getArtist().contains(artist))
             {
                 it.remove();
             }
         }
     }
+
     /**
      * metodo que permite eliminar tracks que contengan una determinada cadena en el titulo de la cancion usando un iterador
      */
@@ -264,12 +268,21 @@ public class MusicOrganizer
         while (it.hasNext())
         {
             Track track = it.next();
-            
+
             if (track.getTitle().contains(title))
             {
                 it.remove();
             }
         }
+    }
+
+    /**
+     * metodo que reproduce una de las canciones del organizador al azar.
+     */
+    public void playRandom()
+    {
+        Random cancionAleatoria = new Random();
+        playTrack(cancionAleatoria.nextInt(tracks.size()));
     }
 }
 
