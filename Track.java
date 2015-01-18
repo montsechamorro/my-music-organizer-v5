@@ -15,8 +15,8 @@ public class Track
     private String filename;
     // veces que se ha reproducido una cancion
     private int playCount;
-    // indica el album en que esta contenida la cancion
-    private String albumTitle;
+    // año en el que se publico
+    private int year;
     
     /**
      * Constructor for objects of class Track.
@@ -24,11 +24,11 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    public Track(String artist, String title, String filename, String albumTitle)
+    public Track(String artist, String title, String filename)
     {
-        setDetails(artist, title, filename, albumTitle);
+        setDetails(artist, title, filename);
         playCount = 0;
-     
+        year = 0;
     }
     
     /**
@@ -37,9 +37,11 @@ public class Track
      * decoded to extract artist and title details.
      * @param filename The track file. 
      */
-    public Track(String filename, String albumTitle)
+    public Track(String filename)
     {
-        setDetails("unknown", "unknown", filename, albumTitle);
+        setDetails("unknown", "unknown", filename);
+        playCount = 0;
+        year = 0;
     }
     
     /**
@@ -71,13 +73,13 @@ public class Track
     /**
      * devuelve el titulo del album donde se encuentra la cancion
      */
-    public String getAlbumTitle()
+    public int getYear()
     {
-        return albumTitle;
+        return year;
     }
-    public void setAlbumTitle(String albumTitle)
+    public void setYear(int year)
     {
-        this.albumTitle = albumTitle;
+        this.year = year;
     }
         
     /**
@@ -86,7 +88,7 @@ public class Track
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ")" + "Times played: " + playCount + "Titulo del Album: " + albumTitle;
+        return artist + ": " + title + "  (file: " + filename + ")" + "Reproducciones: " + playCount + "Año: " + year;
     }
     
     /**
@@ -95,12 +97,11 @@ public class Track
      * @param title The track's title.
      * @param filename The track file. 
      */
-    private void setDetails(String artist, String title, String filename, String albumTitle)
+    private void setDetails(String artist, String title, String filename)
     {
         this.artist = artist;
         this.title = title;
         this.filename = filename;
-        this.albumTitle = albumTitle;
     }
     /**
      * metodo que devuelve las veces que se ha reproducido la cancion
