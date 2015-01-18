@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Collections;
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -284,5 +285,27 @@ public class MusicOrganizer
         Random cancionAleatoria = new Random();
         playTrack(cancionAleatoria.nextInt(tracks.size()));
     }
+    /**
+     * metodo que reproduce los primeros segundos de cada canción en orden aleatoria
+     * cada cancion se reproduce una vez y deben reproducirsee todas
+     * los contadores de reproducción deben actualizarse correctamente
+     * debe mostrar por pantalla los detalles de la canción que esta sonando en este momento
+     */
+    public void playShuffle()
+    {
+        //creamos random, y cambiamos la semilla
+        Random rndIndex = new Random(System.currentTimeMillis());
+        Collections.shuffle(tracks, rndIndex);
+        int index = 0;
+        while (index < tracks.size())
+        {
+            Track playTrack = tracks.get(index);
+            System.out.println(playTrack.getDetails());
+            playTrack.incrementPlayCount();
+            player.playSample(playTrack.getFilename());
+            index++;
+        }
+    }
 }
+
 
